@@ -12,9 +12,10 @@ final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::factory()->role(Role::ADMIN)->create([
+        $user = User::factory()->create([
             'name' => 'Steve McDougall',
             'email' => 'juststevemcd@gmail.com',
+            'role' => Role::ADMIN,
         ]);
     }
 }

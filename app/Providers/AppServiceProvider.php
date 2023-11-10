@@ -16,6 +16,6 @@ final class AppServiceProvider extends ServiceProvider
             shouldBeStrict: ! $this->app->environment('production'),
         );
 
-        Relation::enforceMorphMap([]);
+//        Relation::enforceMorphMap([]);
     }
 }

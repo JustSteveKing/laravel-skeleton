@@ -7,6 +7,8 @@ namespace App\Models;
 use App\Enums\Identity\Role;
 use App\Models\Handlers\AddsAvatarFromEmail;
 use Carbon\CarbonInterface;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
@@ -32,7 +34,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property null|CarbonInterface $deleted_at
  * @property Collection<PersonalAccessToken> $tokens
  */
-final class User extends Authenticatable implements MustVerifyEmail
+final class User extends Authenticatable implements MustVerifyEmail, FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -77,4 +79,9 @@ final class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
         'role' => Role::class,
     ];
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->email === 'juststevemcd@gmail.com';
+    }
 }
