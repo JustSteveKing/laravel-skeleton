@@ -30,7 +30,7 @@ jobs:
         run: npm install && npm run build
 
       - name: Run composer install
-        run: composer install -n --prefer-dist
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
       - name: Prepare Laravel Application
         run: |
