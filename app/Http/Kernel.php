@@ -28,6 +28,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
+use Spatie\Csp\AddCspHeaders;
 
 final class Kernel extends HttpKernel
 {
@@ -48,6 +49,7 @@ final class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
+            AddCspHeaders::class,
             EncryptCookies::class,
             AddQueuedCookiesToResponse::class,
             StartSession::class,
