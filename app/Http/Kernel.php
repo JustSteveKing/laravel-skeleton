@@ -29,6 +29,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Laravel\Pennant\Middleware\EnsureFeaturesAreActive;
 use Spatie\Csp\AddCspHeaders;
+use Spatie\ResponseCache\Middlewares\CacheResponse;
 
 final class Kernel extends HttpKernel
 {
@@ -56,6 +57,7 @@ final class Kernel extends HttpKernel
             ShareErrorsFromSession::class,
             VerifyCsrfToken::class,
             SubstituteBindings::class,
+            CacheResponse::class,
         ],
 
         'api' => [
