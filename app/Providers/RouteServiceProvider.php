@@ -21,7 +21,7 @@ final class RouteServiceProvider extends ServiceProvider
             callback: static fn(Request $request): Limit => Limit::perMinute(
                 maxAttempts: 60,
             )->by(
-                key: $request->user()?->id ?: $request->ip(),
+                key: $request->bearerToken() ?: $request->ip(),
             ),
         );
 

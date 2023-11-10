@@ -18,7 +18,13 @@ final class {{ class }} extends Model
     use HasFactory;
     use HasUlids;
 
+    /**
+     * @var array<int,string>
+     */
     protected $fillable = [];
 
+    /**
+     * @var array<string,string|class-string>
+     */
     protected $casts = [];
 }

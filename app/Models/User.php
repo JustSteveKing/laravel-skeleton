@@ -34,6 +34,9 @@ final class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use SoftDeletes;
 
+    /**
+     * @var array<int,string>
+     */
     protected $fillable = [
         'name',
         'email',
@@ -43,11 +46,17 @@ final class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at',
     ];
 
+    /**
+     * @var array<int,string>
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+    /**
+     * @var array<string,string|class-string>
+     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
