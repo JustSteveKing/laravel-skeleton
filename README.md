@@ -7,3 +7,8 @@
 
 This is my personal starter kit for building Laravel applications.
 
+## Features
+
+- Feature flags using Laravel Pennant
+- Admin panel using FilmamentPHP
+- PhpStan level 9
