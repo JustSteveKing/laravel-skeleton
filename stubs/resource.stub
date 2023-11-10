@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+/**
+ * @property-read string $resource
+ */
+final class {{ class }} extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->resource->id,
+        ];
+    }
+}

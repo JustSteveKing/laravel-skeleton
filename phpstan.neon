@@ -1,0 +1,7 @@
+parameters:
+    paths:
+        - app/
+
+    level: 9
+
+    checkGenericClassInNonGenericObjectType: false

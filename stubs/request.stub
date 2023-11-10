@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use Illuminate\Foundation\Http\FormRequest;
+
+final class {{ class }} extends FormRequest
+{
+    public function rules(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public function payload()
+    {
+        //
+    }
+}
