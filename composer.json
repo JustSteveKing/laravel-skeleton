@@ -1,94 +1,96 @@
 {
-  "name": "juststeveking/laravel",
-  "type": "project",
-  "description": "My personal Laravel skeleton application.",
-  "keywords": [
-    "laravel",
-    "framework"
-  ],
-  "license": "MIT",
-  "require": {
-    "php": "^8.2",
-    "guzzlehttp/guzzle": "^7.8",
-    "laravel/folio": "^1.1",
-    "laravel/framework": "^10.31",
-    "laravel/pennant": "^1.5",
-    "laravel/sanctum": "^3.3.2",
-    "laravel/tinker": "^2.8.2"
-  },
-  "require-dev": {
-    "fakerphp/faker": "^1.23.0",
-    "laravel/pint": "^1.13.6",
-    "laravel/sail": "^1.26",
-    "mockery/mockery": "^1.6.6",
-    "nunomaduro/collision": "^7.10",
-    "pestphp/pest": "^2.24.3",
-    "pestphp/pest-plugin-laravel": "^2.2",
-    "pestphp/pest-plugin-type-coverage": "^2.4",
-    "phpstan/phpstan": "^1.10.41",
-    "plannr/laravel-fast-refresh-database": "^1.1",
-    "roave/security-advisories": "dev-latest",
-    "spatie/laravel-ignition": "^2.3.1"
-  },
-  "autoload": {
-    "psr-4": {
-      "App\\": "app/",
-      "Database\\Factories\\": "database/factories/",
-      "Database\\Seeders\\": "database/seeders/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "tests/"
-    }
-  },
-  "scripts": {
-    "post-autoload-dump": [
-      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-      "@php artisan package:discover --ansi"
+    "name": "juststeveking/laravel",
+    "type": "project",
+    "description": "My personal Laravel skeleton application.",
+    "keywords": [
+        "laravel",
+        "framework"
     ],
-    "post-update-cmd": [
-      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-    ],
-    "post-root-package-install": [
-      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-    ],
-    "post-create-project-cmd": [
-      "@php artisan key:generate --ansi"
-    ],
-    "coverage": [
-      "./vendor/bin/pest --coverage"
-    ],
-    "dump": [
-      "composer dump-autoload --optimize --classmap-authoritative --strict-psr"
-    ],
-    "pint": [
-      "./vendor/bin/pint"
-    ],
-    "stan": [
-      "./vendor/bin/phpstan analyse --memory-limit=3g --xdebug"
-    ],
-    "test": [
-      "@php artisan test"
-    ],
-    "types": [
-      "./vendor/bin/pest --type-coverage"
-    ]
-  },
-  "extra": {
-    "laravel": {
-      "dont-discover": []
-    }
-  },
-  "config": {
-    "optimize-autoloader": true,
-    "preferred-install": "dist",
-    "sort-packages": true,
-    "allow-plugins": {
-      "pestphp/pest-plugin": true,
-      "php-http/discovery": true
-    }
-  },
-  "minimum-stability": "stable",
-  "prefer-stable": true
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "filament/filament": "^3.0-stable",
+        "guzzlehttp/guzzle": "^7.8",
+        "laravel/folio": "^1.1",
+        "laravel/framework": "^10.31",
+        "laravel/pennant": "^1.5",
+        "laravel/sanctum": "^3.3.2",
+        "laravel/tinker": "^2.8.2"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23.0",
+        "laravel/pint": "^1.13.6",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6.6",
+        "nunomaduro/collision": "^7.10",
+        "pestphp/pest": "^2.24.3",
+        "pestphp/pest-plugin-laravel": "^2.2",
+        "pestphp/pest-plugin-type-coverage": "^2.4",
+        "phpstan/phpstan": "^1.10.41",
+        "plannr/laravel-fast-refresh-database": "^1.1",
+        "roave/security-advisories": "dev-latest",
+        "spatie/laravel-ignition": "^2.3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "coverage": [
+            "./vendor/bin/pest --coverage"
+        ],
+        "dump": [
+            "composer dump-autoload --optimize --classmap-authoritative --strict-psr"
+        ],
+        "pint": [
+            "./vendor/bin/pint"
+        ],
+        "stan": [
+            "./vendor/bin/phpstan analyse --memory-limit=3g --xdebug"
+        ],
+        "test": [
+            "@php artisan test"
+        ],
+        "types": [
+            "./vendor/bin/pest --type-coverage"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

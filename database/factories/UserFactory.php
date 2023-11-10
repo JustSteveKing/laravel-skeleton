@@ -18,10 +18,11 @@ final class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->companyEmail(),
+            'email' => $email = $this->faker->unique()->companyEmail(),
             'role' => Role::USER,
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
+            'avatar' => "https://unavatar.io/{$email}",
             'email_verified_at' => now(),
         ];
     }

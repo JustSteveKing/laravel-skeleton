@@ -27,4 +27,9 @@ final class {{ class }} extends Model
      * @var array<string,string|class-string>
      */
     protected $casts = [];
+
+    /**
+     * @var array<string,class-string>
+     */
+    protected $dispatchesEvents = [];
 }

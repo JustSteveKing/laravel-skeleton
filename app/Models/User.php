@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\Identity\Role;
+use App\Models\Handlers\AddsAvatarFromEmail;
 use Carbon\CarbonInterface;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,6 +25,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property Role $role
  * @property string $password
  * @property null|string $remember_token
+ * @property null|string $avatar
  * @property null|CarbonInterface $email_verified_at
  * @property null|CarbonInterface $created_at
  * @property null|CarbonInterface $updated_at
@@ -48,6 +50,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'role',
         'password',
         'remember_token',
+        'avatar',
         'email_verified_at',
     ];
 
@@ -57,6 +60,13 @@ final class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    /**
+     * @var array<string,class-string>
+     */
+    protected $dispatchesEvents = [
+        'created' => AddsAvatarFromEmail::class,
     ];
 
     /**
