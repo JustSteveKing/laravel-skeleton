@@ -21,7 +21,7 @@ jobs:
           coverage: xdebug
 
       - name: Cache npm dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: npm-${{ hashFiles('package-lock.json') }}
@@ -31,6 +31,12 @@ jobs:
 
       - name: Run composer install
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
 
       - name: Prepare Laravel Application
         run: |
