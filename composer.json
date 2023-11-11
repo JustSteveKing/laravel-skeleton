@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.8.2",
         "spatie/laravel-csp": "^2.8.3",
         "spatie/laravel-responsecache": "^7.4.10",
-        "spatie/laravel-slack-alerts": "^1.3"
+        "spatie/laravel-slack-alerts": "^1.3",
+        "spatie/laravel-stats": "^2.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23.0",
