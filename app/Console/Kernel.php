@@ -20,6 +20,10 @@ final class Kernel extends ConsoleKernel
         $schedule->command(
             command: 'model:prune',
         )->daily();
+
+        $schedule->command(
+            command: 'horizon:snapshot',
+        )->everyFiveMinutes();
     }
 
     protected function commands(): void
