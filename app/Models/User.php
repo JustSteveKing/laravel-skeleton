@@ -14,7 +14,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,11 +32,14 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property string $password
  * @property null|string $remember_token
  * @property null|string $avatar
+ * @property null|string $current_account_id
  * @property null|CarbonInterface $email_verified_at
  * @property null|CarbonInterface $created_at
  * @property null|CarbonInterface $updated_at
  * @property null|CarbonInterface $deleted_at
  * @property Collection<PersonalAccessToken> $tokens
+ * @property Collection<Account> $accounts
+ * @property null|Account $currentAccount
  */
 final class User extends Authenticatable implements MustVerifyEmail, FilamentUser
 {
@@ -56,6 +61,7 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
         'password',
         'remember_token',
         'avatar',
+        'current_account_id',
         'email_verified_at',
     ];
 
@@ -96,5 +102,21 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
     public function canAccessPanel(Panel $panel): bool
     {
         return 'juststevemcd@gmail.com' === $this->email;
+    }
+
+    public function accounts(): HasMany
+    {
+        return $this->hasMany(
+            related: Account::class,
+            foreignKey: 'user_id',
+        );
+    }
+
+    public function currentAccount(): Model|HasMany|null
+    {
+        return $this->accounts->where(
+            'id',
+            $this->current_account_id,
+        )->first();
     }
 }

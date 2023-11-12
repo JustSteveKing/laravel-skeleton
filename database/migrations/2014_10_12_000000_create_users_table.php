@@ -20,6 +20,11 @@ return new class () extends Migration {
             $table->rememberToken();
             $table->string('avatar')->nullable();
 
+            $table
+                ->foreignUuid('current_account_id')
+                ->nullable()
+                ->index();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
