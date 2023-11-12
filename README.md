@@ -13,3 +13,5 @@ This is my personal starter kit for building Laravel applications.
 - Admin panel using FilmamentPHP
 - PhpStan level 9
 - Sending Slack Alerts using Spatie package
+- Laravel Horizon for Queues, and supervisor set up in Docker
+
