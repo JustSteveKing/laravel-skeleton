@@ -7,5 +7,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get(
     'health',
-    static fn () => new JsonResponse(['service' => 'online']),
+    static fn() => new JsonResponse(['service' => 'online']),
 )->name('health:check');

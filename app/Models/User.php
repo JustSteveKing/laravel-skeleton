@@ -42,8 +42,8 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
     use HasFactory;
     use HasFeatures;
     use HasUlids;
-    use Prunable;
     use Notifiable;
+    use Prunable;
     use SoftDeletes;
 
     /**

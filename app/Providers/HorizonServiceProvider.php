@@ -15,7 +15,7 @@ final class HorizonServiceProvider extends HorizonApplicationServiceProvider
         Gate::define(
             ability: 'viewHorizon',
             callback: static fn(User $user): bool =>
-                $user->email === 'juststevemcd@gmail.com',
+                'juststevemcd@gmail.com' === $user->email,
         );
     }
 }

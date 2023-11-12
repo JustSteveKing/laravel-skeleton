@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     /*
      * The webhook URLs that we'll use to send a message to Slack.
