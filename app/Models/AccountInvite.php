@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Handlers\Accounts\TriggerEvents;
 use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * @property string $id
@@ -26,6 +28,7 @@ final class AccountInvite extends Model
 {
     use HasFactory;
     use HasUlids;
+    use Notifiable;
 
     /**
      * @var array<int,string>
@@ -43,6 +46,13 @@ final class AccountInvite extends Model
      */
     protected $casts = [
         'expires_at' => 'datetime',
+    ];
+
+    /**
+     * @var array<string,string|class-string>
+     */
+    protected $dispatchesEvents = [
+        'created' => TriggerEvents::class,
     ];
 
     public function account(): BelongsTo
