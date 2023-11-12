@@ -27,6 +27,7 @@ use Illuminate\Notifications\Notifiable;
  * @property null|CarbonInterface $updated_at
  * @property User $user
  * @property Collection<AccountInvite> $invites
+ * @property Collection<Membership> $members
  */
 final class Account extends Model
 {
@@ -72,6 +73,14 @@ final class Account extends Model
     {
         return $this->hasMany(
             related: AccountInvite::class,
+            foreignKey: 'account_id',
+        );
+    }
+
+    public function members(): HasMany
+    {
+        return $this->hasMany(
+            related: Membership::class,
             foreignKey: 'account_id',
         );
     }

@@ -9,9 +9,9 @@ This is my personal starter kit for building Laravel applications.
 
 ## Features
 
-- Feature flags using Laravel Pennant
-- Admin panel using FilamentPHP
-- PhpStan level 9
-- Sending Slack Alerts using Spatie package
-- Laravel Horizon for Queues, and supervisor set up in Docker
-- Accounts and Account Invites
+- Feature flags using Laravel Pennant.
+- Admin panel using FilamentPHP.
+- PhpStan level 9.
+- Sending Slack Alerts using Spatie package.
+- Laravel Horizon for Queues, and supervisor set up in Docker.
+- Accounts, Account Invites, and Memberships.

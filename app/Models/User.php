@@ -41,6 +41,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property Collection<Account> $accounts
  * @property null|Account $currentAccount
  * @property Collection<AccountInvite> $invites
+ * @property Collection<Membership> $memberships
  */
 final class User extends Authenticatable implements MustVerifyEmail, FilamentUser
 {
@@ -125,6 +126,14 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
     {
         return $this->hasMany(
             related: AccountInvite::class,
+            foreignKey: 'user_id',
+        );
+    }
+
+    public function memberships(): HasMany
+    {
+        return $this->hasMany(
+            related: Membership::class,
             foreignKey: 'user_id',
         );
     }
