@@ -7,10 +7,12 @@ namespace App\Models;
 use App\Enums\Account\Status;
 use App\Models\Handlers\AddsSlugFromName;
 use Carbon\CarbonInterface;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
 /**
@@ -24,6 +26,7 @@ use Illuminate\Notifications\Notifiable;
  * @property null|CarbonInterface $created_at
  * @property null|CarbonInterface $updated_at
  * @property User $user
+ * @property Collection<AccountInvite> $invites
  */
 final class Account extends Model
 {
@@ -62,6 +65,14 @@ final class Account extends Model
         return $this->belongsTo(
             related: User::class,
             foreignKey: 'user_id',
+        );
+    }
+
+    public function invites(): HasMany
+    {
+        return $this->hasMany(
+            related: AccountInvite::class,
+            foreignKey: 'account_id',
         );
     }
 }

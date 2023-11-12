@@ -40,6 +40,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property Collection<PersonalAccessToken> $tokens
  * @property Collection<Account> $accounts
  * @property null|Account $currentAccount
+ * @property Collection<AccountInvite> $invites
  */
 final class User extends Authenticatable implements MustVerifyEmail, FilamentUser
 {
@@ -118,5 +119,13 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
             'id',
             $this->current_account_id,
         )->first();
+    }
+
+    public function invites(): HasMany
+    {
+        return $this->hasMany(
+            related: AccountInvite::class,
+            foreignKey: 'user_id',
+        );
     }
 }
