@@ -10,9 +10,11 @@ use Carbon\CarbonInterface;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,6 +42,7 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
     use HasFactory;
     use HasFeatures;
     use HasUlids;
+    use Prunable;
     use Notifiable;
     use SoftDeletes;
 
@@ -79,6 +82,16 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
         'password' => 'hashed',
         'role' => Role::class,
     ];
+
+    public function prunable(): Builder
+    {
+        return self::query()
+            ->where(
+                'deleted_at',
+                '<=',
+                now()->subMonths(3),
+            );
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {

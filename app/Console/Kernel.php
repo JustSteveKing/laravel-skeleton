@@ -16,6 +16,10 @@ final class Kernel extends ConsoleKernel
             dayOfWeek: 'friday',
             time: '09:00',
         );
+
+        $schedule->command(
+            command: 'model:prune',
+        )->daily();
     }
 
     protected function commands(): void
