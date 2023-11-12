@@ -6,9 +6,11 @@ namespace App\Models;
 
 use App\Models\Handlers\Accounts\TriggerEvents;
 use Carbon\CarbonInterface;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
@@ -29,6 +31,7 @@ final class AccountInvite extends Model
     use HasFactory;
     use HasUlids;
     use Notifiable;
+    use Prunable;
 
     /**
      * @var array<int,string>
@@ -54,6 +57,16 @@ final class AccountInvite extends Model
     protected $dispatchesEvents = [
         'created' => TriggerEvents::class,
     ];
+
+    public function prunable(): Builder
+    {
+        return self::query()
+            ->where(
+                'expires_at',
+                '<=',
+                now()->subMonths(3),
+            );
+    }
 
     public function account(): BelongsTo
     {
